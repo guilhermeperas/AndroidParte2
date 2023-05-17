@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidParte2</string>
+    <string name="txt">Olá</string>
+    <string name="btnText">Clica</string>
 </resources>
