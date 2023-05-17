@@ -12,6 +12,6 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         TextView txt = findViewById(R.id.txt);
-        Button btn = findViewById(R.id.btn);
+        Button btn = findViewById(R.id.btn); // teste
     }
 }
