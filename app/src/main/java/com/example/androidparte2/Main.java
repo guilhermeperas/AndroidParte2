@@ -25,7 +25,6 @@ public class Main extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        txt.setText("Ola via java");
         Toast.makeText(Main.this, "BODA", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this,Main2.class); // (origem,destino)
         intent.putExtra("nome","sergio");
