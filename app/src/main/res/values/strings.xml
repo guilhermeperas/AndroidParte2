@@ -3,4 +3,5 @@
     <string name="txt">Olá</string>
     <string name="btnText">Clica</string>
     <string name="txt2">Cheguei aqui!</string>
+    <string name="lAlunos">Lista de alunos</string>
 </resources>
