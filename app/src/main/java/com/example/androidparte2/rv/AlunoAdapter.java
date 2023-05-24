@@ -3,6 +3,7 @@ package com.example.androidparte2.rv;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,11 @@ public class AlunoAdapter extends Adapter<AlunoAdapter.AlunoViewHolder> {
 
         @Override
         public void onClick(View view) {
-            Log.d(TAG,"onClick"+getLayoutPosition()+nomeView.getText().toString());
+            Intent intent = new Intent(this.context,Act2.class);
+            intent.putExtra("nome",nomeView.getText().toString());
+            intent.putExtra("int",20);
+            this.context.startActivity(intent);
+
         }
     }
 }
