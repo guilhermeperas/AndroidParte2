@@ -9,7 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "bdprog20";
@@ -88,9 +90,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 associarArtigoTag(artigo_id,tag_id);
         return artigo;
     }
-    public Tag criarTag(Tag tag){ // maneira correta o my days
+    public Tag criarTag(String nome){ // maneira correta o my days
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        Tag tag = new Tag(nome);
         values.put(KEY_NOME,tag.nome);
         tag.id = (int) db.insert(TABLE_TAG,null,values);
         return tag;
@@ -116,6 +119,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         artigo.url = c.getString(c.getColumnIndex(KEY_URL));
         artigo.data_criacao = c.getString(c.getColumnIndex(KEY_DATA_CRIACAO));
         return artigo;
+    }
+    //Obter todos os artigos
+    @SuppressLint("Range")
+    public List<Artigo> obterArtigos(String nomeTag)
+    {
+        List<Artigo> artigos = new ArrayList<Artigo>();
+        String query;
+        if(nomeTag == "")
+            query = "SELECT * FROM " + TABLE_ARTIGO;
+        else
+            query = "SELECT * FROM " + TABLE_ARTIGO + " ta, "
+                    + TABLE_TAG + " tt, " + TABLE_ARTIGO_TAB
+                    + " tat WHERE tt." + KEY_NOME
+                    + " = '" + nomeTag + "'" + " AND tt." + KEY_ID
+                    + " = " + "tat." + KEY_TAG_ID;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        if(c.moveToFirst())
+        {
+            do
+            {
+                Artigo artigo = new Artigo();
+                artigo.id = c.getInt(c.getColumnIndex(KEY_ID));
+                artigo.title = c.getString((c.getColumnIndex(KEY_TITULO)));
+                artigo.url = c.getString((c.getColumnIndex(KEY_URL)));
+                artigo.estado = c.getInt((c.getColumnIndex(KEY_ESTADO)));
+                artigo.data_criacao = c.getString((c.getColumnIndex(KEY_DATA_CRIACAO)));
+                artigos.add(artigo);
+            }
+            while(c.moveToNext());
+
+        }
+        return artigos;
     }
     private String getDateTime(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

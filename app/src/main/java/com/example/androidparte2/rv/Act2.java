@@ -16,7 +16,7 @@ public class Act2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainact2);
         txt = (TextView) findViewById(R.id.txtNome);
-        idadetxt = (TextView) findViewById(R.id.txtIdade);
+        idadetxt = (TextView) findViewById(R.id.idadeView);
 
         Intent intent = getIntent();
         String nome = intent.getStringExtra("nome");

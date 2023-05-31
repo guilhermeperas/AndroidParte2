@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AndroidParte2"
         tools:targetApi="31">
         <activity
-            android:name=".rv.MainRv"
+            android:name=".db.MainDB"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".rv.Act2" />
+        <activity android:name=".db.DetalheArtigo" />
         <activity android:name=".Main2" />
 
     </application>
