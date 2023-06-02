@@ -27,7 +27,7 @@ public class DetalheArtigo extends Activity {
         idView.setText(String.valueOf(artigo.id));
         title.setText(artigo.title);
         url.setText(artigo.url);
-
+        //t
         db.fecharDB();
     }
 }
