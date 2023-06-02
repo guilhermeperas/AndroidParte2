@@ -16,6 +16,12 @@ public class Tempo {
 
     public void setId(int id) {
         this.id = id;
+        // mudar a lingua to texto uso o switch
+        /**
+         * switch(id){
+         *  case 200:"blablabla chuva forte" ; break;
+         * }
+         */
     }
 
     public String getDescription() {
