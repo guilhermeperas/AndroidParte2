@@ -3,8 +3,8 @@ package com.example.androidparte2.db;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.androidparte2.R;
 
@@ -16,12 +16,11 @@ public class DetalheArtigo extends Activity {
         setContentView(R.layout.teste);
 
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id",0);
-        if(id == 0)
-            return;
+        String id = intent.getStringExtra("id");
         db = new DatabaseHelper(getApplicationContext());
-        Artigo artigo = db.obterArtigo(id);
-        TextView idView = (TextView) findViewById(R.id.idView);
+
+        Artigo artigo = db.obterArtigo(Integer.parseInt(id));
+        TextView idView = (TextView) findViewById(R.id.idText);
         TextView title = (TextView) findViewById(R.id.tituloView);
         TextView url = (TextView) findViewById(R.id.urlView);
 
@@ -29,5 +28,6 @@ public class DetalheArtigo extends Activity {
         title.setText(artigo.title);
         url.setText(artigo.url);
 
+        db.fecharDB();
     }
 }

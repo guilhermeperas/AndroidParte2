@@ -2,6 +2,7 @@ package com.example.androidparte2.db;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class ArtigoAdapter extends RecyclerView.Adapter<ArtigoAdapter.ArtigoView
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(ctx,DetalheArtigo.class);
-            intent.putExtra("id",id.getText());
+            intent.putExtra("id",id.getText().toString());
             ctx.startActivity(intent);
         }
     }
