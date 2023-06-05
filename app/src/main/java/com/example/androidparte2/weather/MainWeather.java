@@ -3,6 +3,7 @@ package com.example.androidparte2.weather;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,8 +57,19 @@ public class MainWeather extends Activity {
             }
             catch (IOException e){
                 e.printStackTrace();
+            } finally {
+                if(reader != null)
+                    try{
+                        reader.close();
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
             }
             return response.toString();
+        }
+        protected void onPostExecute(String s){ // é chamado sozinho quando o doInBackground termina ou executa
+            super.onPostExecute(s);
+            Log.e("Response",""+server_response);
         }
     }
 
