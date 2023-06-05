@@ -19,7 +19,7 @@ public class Tempo {
         // mudar a lingua to texto uso o switch
         /**
          * switch(id){
-         *  case 200:"blablabla chuva forte" ; break;
+         *  case 200:setDescription("blablabla chuva forte") ; break;
          * }
          */
     }
