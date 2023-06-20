@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/activity_broadcast1.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/activity_mainbroadcast.xml" value="0.2230769230769231" />
         <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/activity_maindb.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/activity_rvitemdb.xml" value="0.271875" />
         <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/main.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/main_service.xml" value="0.20390625" />
         <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/mainact2.xml" value="0.264945652173913" />
         <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/mainbroadcast.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/al220049/AndroidStudioProjects/AndroidParte2/app/src/main/res/layout/mainweather.xml" value="0.27291666666666664" />
