@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            />
+        <TextView
+            android:id="@+id/idView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/descricaoView"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/descricaoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/tipologiaView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descricaoView"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/localizacaoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descricaoView"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/carateristicasView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descricaoView"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="20sp"
+            android:text="@string/lista_caracteristicas"/>
+        <TextView
+            android:id="@+id/saunaView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/carateristicasView"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/commonView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/carateristicasView"
+            android:layout_toRightOf="@id/imgView"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/editBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commonView"
+            android:layout_toRightOf="@id/imgView"
+            android:text="@string/Editar"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commonView"
+            android:layout_toRightOf="@id/editBtn"
+            android:text="@string/Apagar"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
