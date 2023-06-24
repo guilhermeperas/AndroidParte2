@@ -11,13 +11,8 @@ import com.example.androidparte2.dasafio.Classes.Client;
 import com.example.androidparte2.dasafio.Classes.Imovel;
 import com.example.androidparte2.dasafio.Classes.ImovelDetail;
 import com.example.androidparte2.dasafio.Classes.User;
-import com.example.androidparte2.db.Artigo;
-import com.example.androidparte2.db.Tag;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -94,9 +89,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_IMG,imovel.img);
         values.put(KEY_DETAILID,imovel.detail.id);
         int imovel_id = (int) db.insert(TABLE_IMOVEIS,null,values);
-        imovel.id = imovel_id;
+        imovel.id = String.valueOf(imovel_id);
 
         return imovel;
+    }
+    public User checkLogin(ContentValues userdata){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_USERS + " WHERE "+KEY_USERNAME+" = ? AND "+KEY_PASSWORD+" = ?";
+        Cursor c = db.rawQuery(query,new String[]{userdata.get("username").toString(), userdata.get("password").toString()});
+        if(c == null)
+            return null;
+        if(c.moveToFirst()){
+            User user = new User();
+            user.id = c.getInt(c.getColumnIndex(KEY_ID));
+            user.username = c.getString(c.getColumnIndex(KEY_USERNAME));
+            return user;
+        }
+        return null;
     }
     public ImovelDetail createDetail(ImovelDetail detail){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -113,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_NAME,client.name);
         values.put(KEY_AGE,client.age);
         values.put(KEY_IMG,client.img);
-        client.id = (int) db.insert(TABLE_CLIENTS,null,values);
+        client.id = String.valueOf(db.insert(TABLE_CLIENTS,null,values));
         return client;
     }
     public User createUser(User user,String password){
@@ -135,7 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do
             {
                 Client cliente = new Client();
-                cliente.id = c.getInt(c.getColumnIndex(KEY_ID));
+                cliente.id = c.getString(c.getColumnIndex(KEY_ID));
                 cliente.name = c.getString((c.getColumnIndex(KEY_NAME)));
                 cliente.age = c.getString((c.getColumnIndex(KEY_AGE)));
                 cliente.img = c.getString((c.getColumnIndex(KEY_IMG))); // img needs change todo
@@ -165,7 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(query,new String[]{Long.toString(client_id)});
         if(c != null) c.moveToFirst();
         Client client = new Client();
-        client.id = c.getInt(c.getColumnIndex(KEY_ID));
+        client.id = c.getString(c.getColumnIndex(KEY_ID));
         client.name = c.getString(c.getColumnIndex(KEY_NAME));
         client.age = c.getString(c.getColumnIndex(KEY_AGE));
         client.img = c.getString(c.getColumnIndex(KEY_IMG));
@@ -175,7 +184,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Imovel> getImoveisList()
     {
         List<Imovel> imoveis = new ArrayList<Imovel>();
-        String query = "SELECT * FROM "+TABLE_IMOVEIS;
+        String query = "SELECT * FROM " + TABLE_IMOVEIS +
+                " INNER JOIN " + TABLE_DETAILSIMOVEIS +
+                " ON " + KEY_DETAILID + " = " + TABLE_DETAILSIMOVEIS + ".id";
+
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -184,11 +196,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do
             {
                 Imovel imovel = new Imovel();
-                imovel.id = c.getInt(c.getColumnIndex(KEY_ID));
+                imovel.id = c.getString(c.getColumnIndex(KEY_ID));
                 imovel.description = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
                 imovel.typology = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
                 imovel.location = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
-//                imovel.detail = new ImovelDetail(c.getString(c.getColumnIndex(KEY_SAUNA)),c.getString(c.getColumnIndex(KEY_COMMON_AREA)));
+                imovel.detail = new ImovelDetail(c.getString(c.getColumnIndex(KEY_SAUNA)),c.getString(c.getColumnIndex(KEY_COMMON_AREA)));
                 imoveis.add(imovel);
             }
             while(c.moveToNext());

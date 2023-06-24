@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidparte2.R;
-import com.example.androidparte2.dasafio.Activities.rv.ClientAdapter;
-import com.example.androidparte2.dasafio.Classes.Client;
+import com.example.androidparte2.dasafio.Activities.rv.ImovelAdapter;
+import com.example.androidparte2.dasafio.Classes.Imovel;
 import com.example.androidparte2.dasafio.db.DatabaseHelper;
 
 import java.util.List;
@@ -30,9 +30,9 @@ public class BackOfficeImoveis extends Activity implements View.OnClickListener 
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         db = new DatabaseHelper(getApplicationContext()); // oque muda deste para o imoveis e so a lista... e o onclick fazer classe para os 2
-        List<Client> list = db.getClientList();
+        List<Imovel> list = db.getImoveisList();
 
-        ClientAdapter adapter = new ClientAdapter(list,this);
+        ImovelAdapter adapter = new ImovelAdapter(list,this);
         rv.setAdapter(adapter);
     }
 

@@ -85,7 +85,7 @@ public class MyService extends IntentService {
                 String urlFoto = clienteObject.getString("url_foto");
                 Log.d("Cliente insert", "Cliente => " + db.createClient(new Client(nome, idade, urlFoto)));
             }
-
+            db.createUser(new User("teste"), "teste");
             JSONArray imoveisArray = jsonObject.getJSONObject("imoveis").getJSONArray("imovel");
 
             for (int i = 0; i < imoveisArray.length(); i++) {
@@ -99,14 +99,15 @@ public class MyService extends IntentService {
                 JSONArray caracteristicasArray = imovelObject.optJSONArray("lista_caracteristicas");
                 ImovelDetail caracteristica = new ImovelDetail();
                 if (caracteristicasArray != null && caracteristicasArray.length() > 0) {
+
                     JSONObject caracteristicaObject = caracteristicasArray.getJSONObject(0);
-
                     caracteristica.hasSauna = caracteristicaObject.optString("sauna");
-                    caracteristica.hasCommonArea = caracteristicaObject.optString("areacomum");
-                }
 
-                Imovel imovel = new Imovel(descricao, tipologia, localizacao, urlFoto, caracteristica);
-                Log.d("Imovel insert", "Imovel => " + db.createImovel(imovel));
+                    JSONObject commonArea = caracteristicasArray.getJSONObject(1);
+                    caracteristica.hasCommonArea = commonArea.optString("areacomum");
+                }
+                Log.d("Data-imovel", "Desc: "+descricao+" Tip: "+tipologia+" Local: "+localizacao+ " Carateristicas: sauna :"+caracteristica.hasSauna+" common:"+caracteristica.hasCommonArea);
+                Log.d("Imovel insert", "Imovel => " + db.createImovel(new Imovel(descricao, tipologia, localizacao, urlFoto, caracteristica)));
             }
             // Broadcast the completion of the service
         } catch (JSONException e) {

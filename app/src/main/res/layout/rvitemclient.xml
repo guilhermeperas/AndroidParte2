@@ -11,25 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
-        <ImageView
+        <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/imgView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
             />
         <TextView
             android:id="@+id/idView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/nomeView"
+            android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/imgView"
             android:textSize="20sp" />
         <TextView
             android:id="@+id/nomeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/idView"
             android:layout_toRightOf="@id/imgView"
             android:textSize="25sp" />
         <TextView
@@ -38,23 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/nomeView"
             android:layout_toRightOf="@id/imgView"
-            android:textSize="20sp" />
-        <Button
-            android:id="@+id/editBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idadeView"
-            android:layout_toRightOf="@id/imgView"
-            android:text="@string/Editar"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/deleteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idadeView"
-            android:layout_toRightOf="@id/editBtn"
-            android:text="@string/Apagar"
             android:textSize="20sp" />
 
     </RelativeLayout>

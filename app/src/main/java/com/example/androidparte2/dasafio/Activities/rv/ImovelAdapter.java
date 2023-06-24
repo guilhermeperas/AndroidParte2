@@ -1,22 +1,15 @@
 package com.example.androidparte2.dasafio.Activities.rv;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.androidparte2.R;
-import com.example.androidparte2.dasafio.Classes.Client;
+import com.example.androidparte2.dasafio.Classes.ImageHandler;
 import com.example.androidparte2.dasafio.Classes.Imovel;
-import com.example.androidparte2.rv.Act2;
-import com.example.androidparte2.rv.Aluno;
 
 import java.util.List;
 
@@ -38,12 +31,13 @@ public class ImovelAdapter extends Adapter<ImovelViewHolder> {
     }
     @Override
     public void onBindViewHolder(ImovelViewHolder holder, int position) {
-//        holder.imgView.setImageResource(clientes.get(position).img); TODO FIX IMAGE
+        holder.imgView.setImageUrl(imoveis.get(position).img, ImageHandler.getInstance(context).getImageLoader());
         holder.descricaoView.setText(imoveis.get(position).description);
         holder.tiplogiaView.setText(imoveis.get(position).typology);
         holder.localizacaoView.setText(imoveis.get(position).location);
-//        holder.saunaView.setText(imoveis.get(position).detail.hasSauna);
-//        holder.commonView.setText(imoveis.get(position).detail.hasCommonArea);
+        holder.saunaView.setText(imoveis.get(position).detail.hasSauna);
+        holder.commonView.setText(imoveis.get(position).detail.hasCommonArea);
+        holder.idView.setText(imoveis.get(position).id);
     }
 
     @Override

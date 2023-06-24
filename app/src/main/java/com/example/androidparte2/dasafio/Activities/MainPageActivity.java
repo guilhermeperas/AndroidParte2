@@ -32,8 +32,8 @@ public class MainPageActivity extends Activity implements View.OnClickListener, 
     }
     @Override
     public void onClick(View view) {
-//        Intent intent = new Intent(this,ImoveisActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this,ImoveisActivity.class);
+        startActivity(intent);
     }
 
     @Override

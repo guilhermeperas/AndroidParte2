@@ -1,7 +1,7 @@
 package com.example.androidparte2.dasafio.Classes;
 
 public class Client {
-    public int id;
+    public String id;
     public String name;
     public String age;
     public String img;

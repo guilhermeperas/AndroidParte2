@@ -1,9 +1,11 @@
 package com.example.androidparte2.dasafio.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +39,7 @@ public class BackOfficeClientes extends Activity implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v) {
-        // chamo a atividade para criar novo...
+    public void onClick(View view) {
+        // create new
     }
 }
