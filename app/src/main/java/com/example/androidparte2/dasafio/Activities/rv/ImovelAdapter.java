@@ -26,7 +26,7 @@ public class ImovelAdapter extends Adapter<ImovelViewHolder> {
     @Override
     public ImovelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rvitemimovel,parent,false);
-        ImovelViewHolder avh = new ImovelViewHolder(v,this.context);
+        ImovelViewHolder avh = new ImovelViewHolder(v,this.context,this);
         return avh;
     }
     @Override
@@ -43,5 +43,10 @@ public class ImovelAdapter extends Adapter<ImovelViewHolder> {
     @Override
     public int getItemCount() {
         return imoveis.size();
+    }
+    public void removeAt(int position) {
+        imoveis.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, imoveis.size());
     }
 }
