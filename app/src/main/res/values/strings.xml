@@ -4,5 +4,18 @@
     <string name="btnText">Clica</string>
     <string name="txt2">Cheguei aqui!</string>
     <string name="lAlunos">Lista de alunos</string>
-    <string name="loginText">Login\n</string>
+    <string name="loginText">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="gestao">Gestao</string>
+    <string name="Apagar">Apagar</string>
+    <string name="Editar">Editar</string>
+    <string name="Criarnovo">Criar novo</string>
+    <string name="Listaimoveis">Lista de imoveis</string>
+    <string name="lista_caracteristicas">Carateristicas:</string>
+    <string-array name="gestaolist">
+        <item></item>
+        <item>Clientes</item>
+        <item>Imoveis</item>
+    </string-array>
 </resources>

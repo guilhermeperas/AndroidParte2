@@ -7,4 +7,14 @@ public class Imovel {
     public String typology;
     public String location;
     public String img;
+
+    public Imovel(){};
+
+    public Imovel(String description,String typology,String location,String img,ImovelDetail detail){
+        this.description = description;
+        this.typology = typology;
+        this.location = location;
+        this.img = img;
+        this.detail = detail;
+    }
 }

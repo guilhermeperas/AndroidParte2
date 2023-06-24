@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CLIENTS =
             "CREATE TABLE "+TABLE_CLIENTS+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+KEY_NAME+" TEXT,"+KEY_AGE+" INTEGER,"+KEY_IMG+" TEXT)";
     private static final String CREATE_TABLE_IMOVEIS =
-            "CREATE TABLE "+TABLE_IMOVEIS+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+KEY_DESCRIPTION+" TEXT,"+KEY_TYPOLOGY+" TEXT,"+KEY_LOCATION+" TEXT,"+KEY_DETAILID+" INTEGER)";
+            "CREATE TABLE "+TABLE_IMOVEIS+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+KEY_IMG+" TEXT,"+KEY_DESCRIPTION+" TEXT,"+KEY_TYPOLOGY+" TEXT,"+KEY_LOCATION+" TEXT,"+KEY_DETAILID+" INTEGER)";
     private static final String CREATE_TABLE_DETAILSIMOVEIS =
             "CREATE TABLE "+TABLE_DETAILSIMOVEIS+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+KEY_SAUNA+" TEXT,"+KEY_COMMON_AREA+" TEXT)";
 
@@ -116,19 +116,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         client.id = (int) db.insert(TABLE_CLIENTS,null,values);
         return client;
     }
-    public User createUser(User user){
+    public User createUser(User user,String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_USERNAME,user.username);
-        values.put(KEY_PASSWORD,user.password);
+        values.put(KEY_PASSWORD,password);
         user.id = (int) db.insert(TABLE_USERS,null,values);
         return user;
     }
-    /*
-    @SuppressLint("Range")
-    public Artigo obterArtigo(long artigo_id){
+    public List<Client> getClientList(){
+        List<Client> clientes = new ArrayList<Client>();
+        String query;
+        query = "SELECT * FROM " + TABLE_CLIENTS;
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM "+ TABLE_ARTIGO + " WHERE "+KEY_ID+" = ?";
+        Cursor c = db.rawQuery(query, null);
+        if(c.moveToFirst())
+        {
+            do
+            {
+                Client cliente = new Client();
+                cliente.id = c.getInt(c.getColumnIndex(KEY_ID));
+                cliente.name = c.getString((c.getColumnIndex(KEY_NAME)));
+                cliente.age = c.getString((c.getColumnIndex(KEY_AGE)));
+                cliente.img = c.getString((c.getColumnIndex(KEY_IMG))); // img needs change todo
+                clientes.add(cliente);
+            }
+            while(c.moveToNext());
+
+        }
+        return clientes;
+    }
+    public boolean apagarClient(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_CLIENTS, KEY_ID + "=" + id, null) > 0;
+    }
+    @SuppressLint("Range")
+    public Client obterCliente(long client_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_CLIENTS + " WHERE "+KEY_ID+" = ?";
         /**
          * rawQuery -> QUERY SQL
          * SEGUNDO PARAMETRO: SAO OS VALORES PARA OS PARAMETROS DA QUERY QUE SÃO DEFINIDOS POR INTERROGAÇÃO = ?
@@ -136,49 +161,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          *
          * EXEMPLO SERIO OMDAYS = Cursor c = db.rawQuery("SELECT * FROM TABLE_ARTIGO WHERE KEY_ID = ?",,new String[]{Long.toString(artigo_id)}
          * EXEMPLO SEM PARAMETROS = Cursor c = db.rawQuery("SELECT * FROM TABLE_ARTIGO,null)
-        Cursor c = db.rawQuery(query,new String[]{Long.toString(artigo_id)});
+         * */
+        Cursor c = db.rawQuery(query,new String[]{Long.toString(client_id)});
         if(c != null) c.moveToFirst();
-        Artigo artigo = new Artigo();
-        artigo.id = c.getInt(c.getColumnIndex(KEY_ID));
-        artigo.title = c.getString(c.getColumnIndex(KEY_TITULO));
-        artigo.estado = c.getInt(c.getColumnIndex(KEY_ESTADO));
-        artigo.url = c.getString(c.getColumnIndex(KEY_URL));
-        artigo.data_criacao = c.getString(c.getColumnIndex(KEY_DATA_CRIACAO));
-        return artigo;
+        Client client = new Client();
+        client.id = c.getInt(c.getColumnIndex(KEY_ID));
+        client.name = c.getString(c.getColumnIndex(KEY_NAME));
+        client.age = c.getString(c.getColumnIndex(KEY_AGE));
+        client.img = c.getString(c.getColumnIndex(KEY_IMG));
+        return client;
     }
-    //Obter todos os artigos
     @SuppressLint("Range")
-    public List<Artigo> obterArtigos(String nomeTag)
+    public List<Imovel> getImoveisList()
     {
-        List<Artigo> artigos = new ArrayList<Artigo>();
-        String query;
-        if(nomeTag == "")
-            query = "SELECT * FROM " + TABLE_ARTIGO;
-        else
-            query = "SELECT * FROM " + TABLE_ARTIGO + " ta, "
-                    + TABLE_TAG + " tt, " + TABLE_ARTIGO_TAB
-                    + " tat WHERE tt." + KEY_NOME
-                    + " = '" + nomeTag + "'" + " AND tt." + KEY_ID
-                    + " = " + "tat." + KEY_TAG_ID;
+        List<Imovel> imoveis = new ArrayList<Imovel>();
+        String query = "SELECT * FROM "+TABLE_IMOVEIS;
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
         if(c.moveToFirst())
         {
             do
             {
-                Artigo artigo = new Artigo();
-                artigo.id = c.getInt(c.getColumnIndex(KEY_ID));
-                artigo.title = c.getString((c.getColumnIndex(KEY_TITULO)));
-                artigo.url = c.getString((c.getColumnIndex(KEY_URL)));
-                artigo.estado = c.getInt((c.getColumnIndex(KEY_ESTADO)));
-                artigo.data_criacao = c.getString((c.getColumnIndex(KEY_DATA_CRIACAO)));
-                artigos.add(artigo);
+                Imovel imovel = new Imovel();
+                imovel.id = c.getInt(c.getColumnIndex(KEY_ID));
+                imovel.description = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
+                imovel.typology = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
+                imovel.location = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
+//                imovel.detail = new ImovelDetail(c.getString(c.getColumnIndex(KEY_SAUNA)),c.getString(c.getColumnIndex(KEY_COMMON_AREA)));
+                imoveis.add(imovel);
             }
             while(c.moveToNext());
 
         }
-        return artigos;
+        return imoveis;
     }
+    /*
     private String getDateTime(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();

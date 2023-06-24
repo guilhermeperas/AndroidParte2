@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:id="@+id/listNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lAlunos" />
+        android:text="@null"/>
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Criarnovo"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="wrap_content"
