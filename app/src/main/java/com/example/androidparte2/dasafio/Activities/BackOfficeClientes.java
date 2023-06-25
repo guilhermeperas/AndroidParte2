@@ -23,7 +23,7 @@ public class BackOfficeClientes extends Activity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rvmain);
+        setContentView(R.layout.rvbmain);
 
         btn = (Button) findViewById(R.id.btnCreate);
         btn.setOnClickListener(this);
@@ -40,6 +40,7 @@ public class BackOfficeClientes extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        // create new
+        Intent intent = new Intent(this,EditClient.class);
+        startActivity(intent);
     }
 }

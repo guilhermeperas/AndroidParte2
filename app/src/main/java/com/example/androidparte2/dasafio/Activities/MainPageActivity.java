@@ -12,50 +12,32 @@ import android.widget.Spinner;
 
 import com.example.androidparte2.R;
 
-public class MainPageActivity extends Activity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-    Button btn;
+public class MainPageActivity extends Activity implements View.OnClickListener {
+    Button btn,btnGestaoClientes,btnGestaoImoveis;
     Intent intent;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainproject);
 
         btn = (Button) findViewById(R.id.imoveisList);
+        btnGestaoClientes = (Button) findViewById(R.id.gestaoClientes);
+        btnGestaoImoveis = (Button) findViewById(R.id.gestaoImoveis);
         btn.setOnClickListener(this);
-        // botao de gestao
-        Spinner spinner = (Spinner) findViewById(R.id.gestaoList);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.gestaolist, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        btnGestaoClientes.setOnClickListener(this);
+        btnGestaoImoveis.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(this,ImoveisActivity.class);
-        startActivity(intent);
-    }
+        if(view.getId() == btn.getId()){
+            intent = new Intent(this,ImoveisActivity.class);
+        }else if (view.getId() == btnGestaoClientes.getId()){
+            intent = new Intent(this, BackOfficeClientes.class);
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Object item = parent.getItemAtPosition(position);
-        String escolha = item.toString();
-        switch (escolha){
-            case "Imoveis":
-                intent = new Intent(this, BackOfficeImoveis.class);
-                break;
-            case "Clientes":
-                intent = new Intent(this, BackOfficeClientes.class);
-                break;
-            case "":
-                return;
+        } else if (view.getId() == btnGestaoImoveis.getId()) {
+            intent = new Intent(this, BackOfficeImoveis.class);
         }
-        Log.d("Escohla","Item escolhido "+escolha);
         startActivity(intent);
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        return;
     }
 }

@@ -6,13 +6,15 @@
         android:id="@+id/nomeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10">
+        android:ems="10"
+        android:hint="@string/nome">
         <requestFocus/>
     </EditText>
     <EditText
         android:id="@+id/idadeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/idade"
         android:ems="10">
         <requestFocus/>
     </EditText>

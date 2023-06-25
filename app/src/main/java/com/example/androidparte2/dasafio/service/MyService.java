@@ -94,8 +94,8 @@ public class MyService extends IntentService {
                 String descricao = imovelObject.getString("descricao");
                 String tipologia = imovelObject.getString("tipologia");
                 String localizacao = imovelObject.getString("localizacao");
-                String urlFoto = imovelObject.optString("url_foto");
-
+                String urlFoto = imovelObject.getString("url_foto");
+                Log.d("INICO IMG", "IMAGEM = "+urlFoto);
                 JSONArray caracteristicasArray = imovelObject.optJSONArray("lista_caracteristicas");
                 ImovelDetail caracteristica = new ImovelDetail();
                 if (caracteristicasArray != null && caracteristicasArray.length() > 0) {
@@ -106,7 +106,7 @@ public class MyService extends IntentService {
                     JSONObject commonArea = caracteristicasArray.getJSONObject(1);
                     caracteristica.hasCommonArea = commonArea.optString("areacomum");
                 }
-                Log.d("Data-imovel", "Desc: "+descricao+" Tip: "+tipologia+" Local: "+localizacao+ " Carateristicas: sauna :"+caracteristica.hasSauna+" common:"+caracteristica.hasCommonArea);
+                Log.d("Data-imovel", "Desc: "+descricao+" Tip: "+tipologia+" Local: "+localizacao+ " Img: " +urlFoto+" Carateristicas: sauna :"+caracteristica.hasSauna+" common:"+caracteristica.hasCommonArea);
                 Log.d("Imovel insert", "Imovel => " + db.createImovel(new Imovel(descricao, tipologia, localizacao, urlFoto, caracteristica)));
             }
             // Broadcast the completion of the service

@@ -16,16 +16,13 @@ import com.example.androidparte2.dasafio.db.DatabaseHelper;
 
 import java.util.List;
 
-public class ImoveisActivity extends Activity implements View.OnClickListener {
+public class ImoveisActivity extends Activity{
     DatabaseHelper db;
     Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rvmain);
-
-        btn = (Button) findViewById(R.id.btnCreate);
-        btn.setOnClickListener(this);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -36,10 +33,5 @@ public class ImoveisActivity extends Activity implements View.OnClickListener {
 
         ImovelAdapter adapter = new ImovelAdapter(list,this);
         rv.setAdapter(adapter);
-    }
-
-    @Override
-    public void onClick(View v) {
-        // abre o detalhe dele
     }
 }

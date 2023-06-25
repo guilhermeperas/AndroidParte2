@@ -35,7 +35,7 @@ public class ClientAdapter extends Adapter<ClientViewHolder> {
     @Override
     public ClientViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rvitemclient,parent,false);
-        ClientViewHolder avh = new ClientViewHolder(v,this.context);
+        ClientViewHolder avh = new ClientViewHolder(v,this.context,this);
         return avh;
     }
     @Override
@@ -49,5 +49,10 @@ public class ClientAdapter extends Adapter<ClientViewHolder> {
     @Override
     public int getItemCount() {
         return clientes.size();
+    }
+    public void removeAt(int position) {
+        clientes.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, clientes.size());
     }
 }

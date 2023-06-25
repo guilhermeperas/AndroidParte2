@@ -113,7 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_SAUNA,detail.hasSauna);
         values.put(KEY_COMMON_AREA,detail.hasCommonArea);
         int detail_id = (int) db.insert(TABLE_DETAILSIMOVEIS,null,values);
-        detail.id = detail_id;
+        detail.id = String.valueOf(detail_id);
         return detail;
     }
     public Client createClient(Client client){
@@ -125,6 +125,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         client.id = String.valueOf(db.insert(TABLE_CLIENTS,null,values));
         return client;
     }
+    public Client updateClient(Client client){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME,client.name);
+        values.put(KEY_AGE,client.age);
+//      values.put(KEY_IMG,client.img);
+        client.id = String.valueOf(db.update(TABLE_CLIENTS, values, "id=?", new String[]{client.id}));
+        return client;
+    }
+    public ImovelDetail updateDetail(ImovelDetail detail){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_SAUNA,detail.hasCommonArea);
+        values.put(KEY_COMMON_AREA,detail.hasSauna);
+        detail.id = String.valueOf(db.update(TABLE_DETAILSIMOVEIS, values, "id=?", new String[]{detail.id}));
+        return detail;
+    }
+    public Imovel updateImovel(Imovel imovel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        if (imovel.detail.id == null) {
+            imovel.detail = createDetail(imovel.detail);
+        } else {
+            imovel.detail = updateDetail(imovel.detail);
+        }
+        ContentValues values = new ContentValues();
+        values.put(KEY_DESCRIPTION, imovel.description);
+        values.put(KEY_TYPOLOGY, imovel.typology);
+        values.put(KEY_LOCATION, imovel.location);
+        values.put(KEY_IMG, imovel.img);
+        values.put(KEY_DETAILID, imovel.detail.id);
+
+        db.update(TABLE_IMOVEIS, values, KEY_ID + "=?", new String[]{imovel.id});
+        return imovel;
+    }
+
+
     public User createUser(User user,String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -159,6 +196,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_CLIENTS, KEY_ID + "=" + id, null) > 0;
     }
+    public boolean apagarImovel(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_IMOVEIS, KEY_ID + "=" + id, null) > 0;
+    }
     @SuppressLint("Range")
     public Client obterCliente(long client_id){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -180,6 +221,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         client.img = c.getString(c.getColumnIndex(KEY_IMG));
         return client;
     }
+    public Imovel getImovel(long id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_IMOVEIS + " INNER JOIN " + TABLE_DETAILSIMOVEIS +
+                " ON " + KEY_DETAILID + " = " + TABLE_DETAILSIMOVEIS + ".id" + " WHERE "+TABLE_IMOVEIS+"."+KEY_ID+" = ?";
+        Cursor c = db.rawQuery(query,new String[]{Long.toString(id)});
+        if(c != null) c.moveToFirst();
+        Imovel imovel = new Imovel();
+        imovel.id = c.getString(c.getColumnIndex(KEY_ID));
+        imovel.description = c.getString(c.getColumnIndex(KEY_DESCRIPTION));
+        imovel.typology = c.getString(c.getColumnIndex(KEY_TYPOLOGY));
+        imovel.location = c.getString(c.getColumnIndex(KEY_LOCATION));
+        imovel.img = c.getString(c.getColumnIndex(KEY_IMG));
+        imovel.detail = new ImovelDetail(c.getString(c.getColumnIndex(KEY_SAUNA)),c.getString(c.getColumnIndex(KEY_COMMON_AREA)));
+        return imovel;
+    }
     @SuppressLint("Range")
     public List<Imovel> getImoveisList()
     {
@@ -198,8 +254,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Imovel imovel = new Imovel();
                 imovel.id = c.getString(c.getColumnIndex(KEY_ID));
                 imovel.description = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
-                imovel.typology = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
-                imovel.location = c.getString((c.getColumnIndex(KEY_DESCRIPTION)));
+                imovel.typology = c.getString((c.getColumnIndex(KEY_TYPOLOGY)));
+                imovel.location = c.getString((c.getColumnIndex(KEY_LOCATION)));
                 imovel.detail = new ImovelDetail(c.getString(c.getColumnIndex(KEY_SAUNA)),c.getString(c.getColumnIndex(KEY_COMMON_AREA)));
                 imoveis.add(imovel);
             }

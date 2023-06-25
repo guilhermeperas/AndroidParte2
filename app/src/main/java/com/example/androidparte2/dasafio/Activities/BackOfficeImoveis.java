@@ -1,6 +1,7 @@
 package com.example.androidparte2.dasafio.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidparte2.R;
+import com.example.androidparte2.dasafio.Activities.rv.BackofficeImovelAdapter;
 import com.example.androidparte2.dasafio.Activities.rv.ImovelAdapter;
 import com.example.androidparte2.dasafio.Classes.Imovel;
 import com.example.androidparte2.dasafio.db.DatabaseHelper;
@@ -21,7 +23,7 @@ public class BackOfficeImoveis extends Activity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rvmain);
+        setContentView(R.layout.rvbmain);
 
         btn = (Button) findViewById(R.id.btnCreate);
         btn.setOnClickListener(this);
@@ -32,12 +34,13 @@ public class BackOfficeImoveis extends Activity implements View.OnClickListener 
         db = new DatabaseHelper(getApplicationContext()); // oque muda deste para o imoveis e so a lista... e o onclick fazer classe para os 2
         List<Imovel> list = db.getImoveisList();
 
-        ImovelAdapter adapter = new ImovelAdapter(list,this);
+        BackofficeImovelAdapter adapter = new BackofficeImovelAdapter(list,this);
         rv.setAdapter(adapter);
     }
 
     @Override
     public void onClick(View v) {
-        // chamo a atividade para criar novo...
+        Intent intent = new Intent(this,EditImovel.class);
+        startActivity(intent);
     }
 }

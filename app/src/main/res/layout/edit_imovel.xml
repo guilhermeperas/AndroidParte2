@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/edittext_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description" />
+
+    <!-- EditText for Imovel Typology -->
+    <EditText
+        android:id="@+id/edittext_typology"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Typology" />
+
+    <!-- EditText for Imovel Location -->
+    <EditText
+        android:id="@+id/edittext_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location" />
+
+    <!-- CheckBox for Imovel Detail: Sauna -->
+    <CheckBox
+        android:id="@+id/checkbox_sauna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sauna" />
+
+    <!-- CheckBox for Imovel Detail: Common Area -->
+    <CheckBox
+        android:id="@+id/checkbox_common_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Common Area" />
+
+    <!-- Button to save the data -->
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+</LinearLayout>

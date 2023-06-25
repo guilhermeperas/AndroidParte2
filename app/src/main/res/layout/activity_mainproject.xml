@@ -7,9 +7,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Listaimoveis" />
-    <Spinner
-        android:id="@+id/gestaoList"
+    <Button
+        android:id="@+id/gestaoClientes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gestao" />
+        android:text="@string/gestaoClie" />
+    <Button
+        android:id="@+id/gestaoImoveis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gestaoImo" />
 </LinearLayout>

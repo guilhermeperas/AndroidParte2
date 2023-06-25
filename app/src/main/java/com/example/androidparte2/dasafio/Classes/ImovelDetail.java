@@ -1,7 +1,7 @@
 package com.example.androidparte2.dasafio.Classes;
 
 public class ImovelDetail {
-    public int id;
+    public String id;
     public String hasSauna;
     public String hasCommonArea;
 

@@ -13,6 +13,14 @@
     <string name="Criarnovo">Criar novo</string>
     <string name="Listaimoveis">Lista de imoveis</string>
     <string name="lista_caracteristicas">Carateristicas:</string>
+    <string name="gestaoClie">Gestao Clientes</string>
+    <string name="gestaoImo">Gestao de imoveis</string>
+    <string name="idade">Idade</string>
+    <string name="nome">Nome</string>
+    <string name="ok">Sim</string>
+    <string name="cancel">Nao</string>
+    <string name="confirmDelete">Tem a certeza que quer apagar este cliente?</string>
+    <string name="confirmacao">Confirmacao</string>
     <string-array name="gestaolist">
         <item></item>
         <item>Clientes</item>

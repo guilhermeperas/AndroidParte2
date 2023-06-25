@@ -32,6 +32,9 @@
         <activity android:name=".dasafio.Activities.BackOfficeClientes" />
         <activity android:name=".dasafio.Activities.LoginActivity" />
         <activity android:name=".dasafio.Activities.ImoveisActivity" />
+        <activity android:name=".dasafio.Activities.EditClient" />
+        <activity android:name=".dasafio.Activities.EditImovel" />
+
         <service
             android:name="com.example.androidparte2.dasafio.service.MyService"
             android:enabled="true"
