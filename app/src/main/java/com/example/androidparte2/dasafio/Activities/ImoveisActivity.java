@@ -33,5 +33,6 @@ public class ImoveisActivity extends Activity{
 
         ImovelAdapter adapter = new ImovelAdapter(list,this);
         rv.setAdapter(adapter);
+        db.fecharDB();
     }
 }

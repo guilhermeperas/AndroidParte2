@@ -58,7 +58,7 @@ public class EditClient extends Activity implements View.OnClickListener {
                 Toast.makeText(this, "Cliente criado com sucesso", Toast.LENGTH_LONG).show();
             }
         }
-        // aqui dava update a lista nsei como
+        db.fecharDB();
         finish();
     }
 }

@@ -87,7 +87,7 @@ public class EditImovel extends Activity implements View.OnClickListener {
                 Toast.makeText(this, "Falha ao criar o imóvel", Toast.LENGTH_LONG).show();
             }
         }
-        // update ao recycler view...
+        db.fecharDB();
         finish();
     }
 }
