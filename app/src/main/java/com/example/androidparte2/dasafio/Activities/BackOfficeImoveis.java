@@ -20,6 +20,7 @@ import java.util.List;
 public class BackOfficeImoveis extends Activity implements View.OnClickListener {
     DatabaseHelper db;
     Button btn;
+    RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,19 +29,27 @@ public class BackOfficeImoveis extends Activity implements View.OnClickListener 
         btn = (Button) findViewById(R.id.btnCreate);
         btn.setOnClickListener(this);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        db = new DatabaseHelper(getApplicationContext()); // oque muda deste para o imoveis e so a lista... e o onclick fazer classe para os 2
-        List<Imovel> list = db.getImoveisList();
-
-        BackofficeImovelAdapter adapter = new BackofficeImovelAdapter(list,this);
-        rv.setAdapter(adapter);
+        loadAdapter();
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this,EditImovel.class);
         startActivity(intent);
+    }
+    private void loadAdapter(){
+        db = new DatabaseHelper(getApplicationContext()); // oque muda deste para o imoveis e so a lista... e o onclick fazer classe para os 2
+        List<Imovel> list = db.getImoveisList();
+
+        BackofficeImovelAdapter adapter = new BackofficeImovelAdapter(list,this);
+        rv.setAdapter(adapter);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAdapter();
     }
 }
