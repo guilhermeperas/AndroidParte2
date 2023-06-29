@@ -7,11 +7,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-public class ImageHandler {
-    private static ImageHandler mInstance = null;
+public class VolleySingleton {
+    private static VolleySingleton mInstance = null;
     private static RequestQueue mRequestQueue;
     private static ImageLoader mImageLoader;
-    private ImageHandler(Context ctx){
+    private VolleySingleton(Context ctx){
         mRequestQueue = Volley.newRequestQueue(ctx);
         mImageLoader = new ImageLoader(this.mRequestQueue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> mCache = new LruCache<String,Bitmap>(10); // 10 sera a quantidade de cache que queremos usar
@@ -26,9 +26,9 @@ public class ImageHandler {
         });
     }
 
-    public static ImageHandler getInstance(Context context) {
+    public static VolleySingleton getInstance(Context context) {
         if(mInstance == null)
-            return new ImageHandler(context);
+            return new VolleySingleton(context);
         return mInstance;
     }
     public static ImageLoader getImageLoader() {

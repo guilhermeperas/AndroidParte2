@@ -13,7 +13,6 @@ import com.example.androidparte2.dasafio.service.MyService;
 
 
 public class MainActivity extends Activity {
-    DatabaseHelper db;
     private BroadcastReceiver broadService = new BroadcastReceiverService();
 
     @Override

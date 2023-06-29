@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.androidparte2.R;
-import com.example.androidparte2.dasafio.Classes.ImageHandler;
+import com.example.androidparte2.dasafio.Classes.VolleySingleton;
 import com.example.androidparte2.dasafio.Classes.Imovel;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class BackofficeImovelAdapter extends Adapter<BackofficeImovelViewHolder>
     }
     @Override
     public void onBindViewHolder(BackofficeImovelViewHolder holder, int position) {
-        holder.imgView.setImageUrl(imoveis.get(position).img, ImageHandler.getInstance(context).getImageLoader());
+        holder.imgView.setImageUrl(imoveis.get(position).img, VolleySingleton.getInstance(context).getImageLoader());
         holder.descricaoView.setText(imoveis.get(position).description);
         holder.tiplogiaView.setText(imoveis.get(position).typology);
         holder.localizacaoView.setText(imoveis.get(position).location);

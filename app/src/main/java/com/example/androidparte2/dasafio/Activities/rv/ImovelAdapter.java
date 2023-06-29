@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.androidparte2.R;
-import com.example.androidparte2.dasafio.Classes.ImageHandler;
+import com.example.androidparte2.dasafio.Classes.VolleySingleton;
 import com.example.androidparte2.dasafio.Classes.Imovel;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class ImovelAdapter extends Adapter<ImovelViewHolder> {
     }
     @Override
     public void onBindViewHolder(ImovelViewHolder holder, int position) {
-        holder.imgView.setImageUrl(imoveis.get(position).img, ImageHandler.getInstance(context).getImageLoader());
+        holder.imgView.setImageUrl(imoveis.get(position).img, VolleySingleton.getInstance(context).getImageLoader());
         Log.d("IMG",  "IMAGEM " +imoveis.get(position).img);
         holder.descricaoView.setText(imoveis.get(position).description);
         holder.tiplogiaView.setText(imoveis.get(position).typology);

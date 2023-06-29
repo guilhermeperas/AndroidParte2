@@ -73,7 +73,7 @@
                 android:id="@+id/editBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/idadeView"
+                android:layout_below="@id/commonView"
                 android:layout_toRightOf="@id/imgView"
                 android:text="@string/Editar"
                 />
@@ -81,7 +81,7 @@
                 android:id="@+id/delBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/idadeView"
+                android:layout_below="@id/commonView"
                 android:layout_toRightOf="@id/editBtn"
                 android:text="@string/Apagar"
                 />

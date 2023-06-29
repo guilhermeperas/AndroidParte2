@@ -1,24 +1,15 @@
 package com.example.androidparte2.dasafio.Activities.rv;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.androidparte2.R;
 import com.example.androidparte2.dasafio.Classes.Client;
-import com.example.androidparte2.dasafio.Classes.ImageHandler;
-import com.example.androidparte2.rv.Act2;
-import com.example.androidparte2.rv.Aluno;
-import com.example.androidparte2.volley.VolleySingleton;
+import com.example.androidparte2.dasafio.Classes.VolleySingleton;
 
 import java.util.List;
 
@@ -42,7 +33,7 @@ public class ClientAdapter extends Adapter<ClientViewHolder> {
     public void onBindViewHolder(ClientViewHolder holder, int position) {
         holder.nomeView.setText(clientes.get(position).name);
         holder.idadeView.setText(clientes.get(position).age);
-        holder.imgView.setImageUrl(clientes.get(position).img,ImageHandler.getInstance(context).getImageLoader());
+        holder.imgView.setImageUrl(clientes.get(position).img, VolleySingleton.getInstance(context).getImageLoader());
         holder.idView.setText(clientes.get(position).id);
     }
 
